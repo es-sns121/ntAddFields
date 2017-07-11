@@ -1,8 +1,8 @@
 
-# ==============================   Qt includes and libs ======================================
-
-QT_INCLUDE += -I$(QT_INC) -I$(QT_INC)/Qt -I$(QT_INC)/QtCore -I$(QT_INC)/QtGui 
-QT_LIBRARY += -L$(QT_LIB) -lQtCore -lQtGui
+# HOST_OS as defined in .bashrc 		:  	Linux
+# EPICS_HOST_ARCH as defined in .bashrc :  	linux-x86_64
+# EPICS_V3_DIR as defined in .bashrc    :	/home/$USER/epics-base-3.16
+# EPICS_V4_DIR as defined in .bashrc 	:	/home/$USER/epics-cpp-4.6.0
 
 # =========================   EPICS V3 and V4 includes and libs ==============================
 
@@ -25,10 +25,6 @@ EPICS_LIBRARY += -L$(EPICS_V3_DIR)/lib/$(EPICS_HOST_ARCH) -lCom                 
 				-L$(EPICS_V4_DIR)/pvDatabaseCPP/lib/$(EPICS_HOST_ARCH) -lpvDatabase \
 				-L$(EPICS_V4_DIR)/normativeTypesCPP/lib/$(EPICS_HOST_ARCH) -lnt   
 
-INC += $(EPICS_INCLUDE) $(QT_INCLUDE)
-LIB += $(EPICS_LIBRARY) $(QT_LIBRARY)
-
 # ==========================================================================================
 
 CPP_FLAGS = -Wall -g -lpthread -lm 
-
