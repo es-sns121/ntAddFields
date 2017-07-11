@@ -14,6 +14,7 @@ using namespace epics::nt;
 using namespace epics::pvData;
 using namespace epics::pvDatabase;
 
+// Creates a pvStructure to be added to the normative type as a nested structure.
 PVStructurePtr createStructure()
 {
 	FieldCreatePtr fieldCreate = getFieldCreate();
@@ -30,11 +31,13 @@ PVStructurePtr createStructure()
 	return pvStructure;
 }
 
+// Create a pvRecord holding a modified normative type, populate the database with it, and return 
+// the database pointer.
 PVDatabasePtr create()
 {
 	bool result(false);
 	string recordName("myRecord");
-	
+
 	PVDatabasePtr master = PVDatabase::getMaster();
 
 	NTScalarBuilderPtr ntScalarBuilder = NTScalar::createBuilder();
