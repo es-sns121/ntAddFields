@@ -11,7 +11,7 @@ srcs = record.cpp main.cpp
 dep = record.h $(srcs)
 
 database: $(dep)
-	mkdir -p $(bin)
+	@mkdir -p $(bin)
 	g++ $(CPP_FLAGS) $(EPICS_INCLUDE) $(EPICS_LIBRARY) $(srcs) -o $(exe)
 
 .PHONY: clean
