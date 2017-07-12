@@ -31,15 +31,9 @@ PVStructurePtr createStructure()
 	return pvStructure;
 }
 
-// Create a pvRecord holding a modified normative type, populate the database with it, and return 
-// the database pointer.
-PVDatabasePtr create()
+// Create a pvRecord holding a modified normative type
+PVRecordPtr createRecord(const string & record_name)
 {
-	bool result(false);
-	string recordName("myRecord");
-
-	PVDatabasePtr master = PVDatabase::getMaster();
-
 	NTScalarBuilderPtr ntScalarBuilder = NTScalar::createBuilder();
 	StandardFieldPtr standardField = getStandardField();
 
@@ -58,10 +52,7 @@ PVDatabasePtr create()
 		
 		createPVStructure();
 
-	PVRecordPtr pvRecord = PVRecord::create(recordName, pvStructure);
+	PVRecordPtr pvRecord = PVRecord::create(record_name, pvStructure);
 
-	result = master->addRecord(pvRecord);
-	if (!result) cerr << "Failed to add '" << recordName << "' record to the database.\n";
-
-	return master;
+	return pvRecord;
 }

@@ -8,6 +8,6 @@
 
 #include <pv/pvDatabase.h>
 
-epics::pvDatabase::PVDatabasePtr create();
+epics::pvDatabase::PVRecordPtr createRecord(const std::string & record_name);
 
 #endif // RECORD_H

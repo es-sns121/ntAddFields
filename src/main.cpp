@@ -23,6 +23,8 @@ int main (int argc, char **argv)
 {
 
 	bool verbosity(false);
+	bool result(false);
+	string record_name("myRecord");
 
 	if (argc > 1 && argv[1]) {
 		
@@ -49,8 +51,14 @@ int main (int argc, char **argv)
 	// Get the local channel provider.
 	ChannelProviderLocalPtr cpLocal = getChannelProviderLocal();
 
-	// Create a record, and populate a database with it. 
-	PVDatabasePtr master = create();
+	// Create a record, and populate the database with it. 
+	
+	PVDatabasePtr master = PVDatabase::getMaster();
+	
+	PVRecordPtr pvRecord = createRecord(record_name);
+
+	result = master->addRecord(pvRecord);
+	if (!result) cerr << "Failed to add record '" << record_name << "' to database.\n";
 
 	// After the records are added to the database, start the server. 
 	ServerContext::shared_pointer pvaServer =
